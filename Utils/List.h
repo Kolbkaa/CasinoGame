@@ -6,6 +6,7 @@
 #define CASINOGAME_LIST_H
 
 
+#include <functional>
 #include "ListElement.h"
 
 template<typename T>
@@ -14,16 +15,16 @@ private:
     ListElement<T> *_element;
     int _length = 0;
 public:
-    int AddItem(T *game) {
+    int AddItem(T *item) {
         if (_element == NULL) {
-            _element = new ListElement(game);
+            _element = new ListElement(item);
             return ++_length;
         }
         ListElement<T> *_head = _element;
         while (_head->IsNextElement()) {
             _head = _head->GetNextElement();
         }
-        _head->SetNextElement(new ListElement(game));
+        _head->SetNextElement(new ListElement(item));
         return ++_length;
 
     }
@@ -50,6 +51,14 @@ public:
             delete elementToDelete->GetItem();
             delete elementToDelete;
 
+        }
+    }
+
+    void Iterate(const std::function<void(T*)>& fn){
+        ListElement<T> *_head = _element;
+        while(_head!=NULL){
+            fn(_head->GetItem());
+            _head = _head->GetNextElement();
         }
     }
 

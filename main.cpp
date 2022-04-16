@@ -2,6 +2,7 @@
 #include "Model/Game.h"
 #include "Utils/List.h"
 #include "Model/User.h"
+#include "Services/UserRepository.h"
 
 int main() {
 
@@ -19,7 +20,14 @@ int main() {
     cout<< game3->GetTitle()<<endl;
 
     gameList->Clear();
-    User *user = new User("user");
-    cout<< user->GetNick();
+    List<User> *users = new List<User>();
+    users->AddItem(new User("user1"));
+    users->AddItem(new User("user2"));
+    UserRepository *userRepository = new UserRepository();
+    userRepository->SaveUsers(users);
+
+    List<User> *user = userRepository->ReadUsers();
+    User* u = user->GetItemById(0);
+    cout<<u->GetNick();
     return 0;
 }
