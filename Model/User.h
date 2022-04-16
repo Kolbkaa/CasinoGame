@@ -29,6 +29,12 @@ public:
         _nick = nick;
         _money = 10000;
     }
+    int AddMoney(int moneyToAdd){
+        return _money += moneyToAdd;
+    }
+    int MinusMoney(int moneyToMinus){
+        return _money -= moneyToMinus;
+    }
 };
 
 

@@ -2,32 +2,67 @@
 #include "Model/Game.h"
 #include "Utils/List.h"
 #include "Model/User.h"
-#include "Services/UserRepository.h"
+#include "Persistent/UserRepository.h"
+#include "UI/UI.h"
+#include "Services/UserService.h"
 
 int main() {
+    User *user = 0;
 
+    UserService *userService = new UserService();
+    List<User> *users = userService->GetUsers();
 
-    List<Game> *gameList = new List<Game>();
-    int a = gameList->AddItem(new Game("tytul1", "opis"));
-    int b = gameList->AddItem(new Game("tytul2", "opis"));
-    int c = gameList->AddItem(new Game("tytul3", "opis"));
+    int choose = 0;
+    int maxChoose = 0;
+    bool isRunning = true;
 
-    Game* game1 = gameList->GetItemById(0);
-    Game* game2 = gameList->GetItemById(1);
-    Game* game3 = gameList->GetItemById(2);
-    cout<< game1->GetTitle()<<endl;
-    cout<< game2->GetTitle()<<endl;
-    cout<< game3->GetTitle()<<endl;
+    while (isRunning == true) {
+        do {
+            maxChoose = UI::PrintMainMenu();
+        } while (!UI::GetUserInput(choose, maxChoose));
+        switch (choose) {
+            case 1:
+                do {
+                    do {
+                        maxChoose = UI::PrintUserMenu();
+                    } while (!UI::GetUserInput(choose, maxChoose));
+                    switch (choose) {
+                        case 1: {
+                            int userMaxChoose = UI::PrintUsers(users);
+                            int userChoose = 0;
+                            if (userMaxChoose == 0){
+                                cout<<"Brak graczy do wybrania"<<endl;
+                            }
+                            else if(UI::GetUserInput(userChoose, userMaxChoose)) {
+                                user = userService->GetUserById(userChoose - 1);
+                            }
+                            break;
+                        }
+                        case 2: {
+                            string nick;
+                            cout << "Podaj nick: "<<endl;
+                            cin >> nick;
+                            if(userService->AddUsers(nick)){
+                                cout<<"Dodano gracza - "<<nick<<endl;
+                            }else{
+                                cout<<"Istnieje juz gracz o nicku - "<<nick<<endl;
+                            };
+                            break;
+                        }
+                    }
+                } while (choose != maxChoose);
+                break;
+            case 2:
+                if (user == NULL) {
+                    cout << "Nie wybrano gracza" << endl;
+                }
+                break;
+            case 3:
+                isRunning = false;
+                break;
+        }
+        choose = 0;
+    }
 
-    gameList->Clear();
-    List<User> *users = new List<User>();
-    users->AddItem(new User("user1"));
-    users->AddItem(new User("user2"));
-    UserRepository *userRepository = new UserRepository();
-    userRepository->SaveUsers(users);
-
-    List<User> *user = userRepository->ReadUsers();
-    User* u = user->GetItemById(0);
-    cout<<u->GetNick();
     return 0;
 }
