@@ -3,4 +3,4 @@ project(CasinoGame)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_executable(CasinoGame main.cpp Model/Game.cpp Model/Game.h Services/GameList.cpp Services/GameList.h Model/GameListElement.cpp Model/GameListElement.h)
+add_executable(CasinoGame main.cpp Model/Game.h Utils/List.h Utils/ListElement.h Model/User.h)

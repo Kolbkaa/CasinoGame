@@ -14,8 +14,14 @@ private:
     string _title;
     string _description;
 public:
-    Game(string title, string description);
-    string GetTitle();
+    Game(string title, string description) {
+        _title = title;
+        _description = description;
+    }
+
+    string GetTitle() {
+        return _title;
+    }
 
 };
 
