@@ -20,6 +20,7 @@ public:
         users->Iterate([&index](User *user) {
             cout << ++(*index) << ". " << user->GetNick() << " Pieniadze: " << user->GetMoney() << endl;
         });
+        cout << endl;
         return *index;
     }
 
@@ -27,7 +28,9 @@ public:
         int index = 0;
         cout << ++index << ". Wybierz gracza." << endl;
         cout << ++index << ". Dodaj gracza." << endl;
+        cout << ++index << ". TOP 100" << endl;
         cout << ++index << ". Wyjscie." << endl;
+        cout << endl;
         return index;
     }
 
@@ -36,20 +39,25 @@ public:
         cout << ++index << ". Gracze." << endl;
         cout << ++index << ". Gry." << endl;
         cout << ++index << ". Wyjscie." << endl;
+        cout << endl;
         return index;
     }
 
     static bool GetUserInput(int &input, int max) {
+        cin.clear();
         if (max == 0) {
             input = 0;
             return true;
         }
         cout << "Twoj wybor?" << endl;
         cin >> input;
+
         if (input <= max && input > 0) {
+            cout << endl;
             return true;
         }
         cout << "Bledny wybor." << endl;
+        cout << endl;
         return false;
     }
 

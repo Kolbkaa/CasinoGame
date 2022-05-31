@@ -54,12 +54,27 @@ public:
         }
     }
 
-    void Iterate(const std::function<void(T*)>& fn){
+    void Iterate(const std::function<void(T *)> &fn) {
         ListElement<T> *_head = _element;
-        while(_head!=NULL){
+        while (_head != NULL) {
             fn(_head->GetItem());
             _head = _head->GetNextElement();
         }
+    }
+
+    T** ToArray(){
+        T** array = new T*[_length];
+
+        ListElement<T> *_head = _element;
+
+        for(int i = 0; i<_length;i++){
+            array[i] = _head->GetItem();
+            _head = _head->GetNextElement();
+        }
+        return array;
+    }
+    int Length(){
+        return _length;
     }
 
 };

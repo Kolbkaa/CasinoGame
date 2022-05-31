@@ -38,6 +38,7 @@ public:
             _users->AddItem(new User(nick));
             _repository->SaveUsers(_users);
         }
+        return isExist;
     }
 
     User* GetUserById(int id){

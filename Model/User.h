@@ -29,6 +29,7 @@ public:
         _nick = nick;
         _money = 10000;
     }
+    User(){}
     int AddMoney(int moneyToAdd){
         return _money += moneyToAdd;
     }

@@ -22,7 +22,7 @@ public:
     };
 
     bool IsNextElement() {
-        return !_nextElement == NULL;
+        return !(_nextElement == NULL);
     }
 
     ListElement<T> *GetNextElement() {
