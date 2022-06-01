@@ -6,6 +6,7 @@
 #define CASINOGAME_GAME_H
 
 #include "string"
+#include "GameState.h"
 
 using namespace std;
 
@@ -21,6 +22,10 @@ public:
 
     string GetTitle() {
         return _title;
+    }
+
+    virtual void Run(User *user) {
+
     }
 
 };

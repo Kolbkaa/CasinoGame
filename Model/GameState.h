@@ -29,7 +29,7 @@ public:
     }
 
 private:
-    User *_user;
+    User *_user = NULL;
     bool _isRunning;
 };
 

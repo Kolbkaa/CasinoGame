@@ -15,8 +15,8 @@ private:
     UserRepository *_repository;
     List<User> *_users;
 public:
-    UserService() {
-        _repository = new UserRepository();
+    UserService(UserRepository *userRepository) {
+        _repository = userRepository;
         _users = _repository->ReadUsers();
     }
 
@@ -43,6 +43,10 @@ public:
 
     User* GetUserById(int id){
         return _users->GetItemById(id);
+    }
+
+    void SaveUsers(){
+        _repository->SaveUsers(_users);
     }
 };
 

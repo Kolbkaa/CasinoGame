@@ -15,26 +15,35 @@ private:
     int _money;
 
 public:
-    string GetNick(){
+    string GetNick() {
         return _nick;
     }
-    int GetMoney(){
+
+    int GetMoney() {
         return _money;
     }
+
     User(string nick, int money) {
         _nick = nick;
         _money = money;
     }
+
     User(string nick) {
         _nick = nick;
         _money = 10000;
     }
-    User(){}
-    int AddMoney(int moneyToAdd){
+
+    User() {}
+
+    int AddMoney(int moneyToAdd) {
         return _money += moneyToAdd;
     }
-    int MinusMoney(int moneyToMinus){
+
+    int MinusMoney(int moneyToMinus) {
         return _money -= moneyToMinus;
+    }
+    bool hasEnoughMoney(int money){
+        return _money >= money;
     }
 };
 

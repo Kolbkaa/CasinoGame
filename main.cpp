@@ -6,11 +6,16 @@
 #include "UI/UI.h"
 #include "Services/UserService.h"
 #include "UI/UserMenuAction.h"
-
+#include "UI/GameMenuAction.h"
+using namespace std;
 int main() {
     GameState* gameState = new GameState();
+    UserRepository *userRepository = new UserRepository();
+    UserService *userService = new UserService(userRepository);
+    GameService *gameService = new GameService();
 
-    UserMenuAction *userMenuAction = new UserMenuAction();
+    UserMenuAction *userMenuAction = new UserMenuAction(userService);
+    GameMenuAction *gameMenuAction = new GameMenuAction(gameService);
 
 
     int choose = 0;
@@ -25,16 +30,21 @@ int main() {
                 userMenuAction->Run(gameState);
                 break;
             case 2:
-                if (gameState->GetUser() == NULL) {
-                    cout << "Nie wybrano gracza" << endl;
-                }
+                gameMenuAction->Run(gameState);
                 break;
             case 3:
+                userService->SaveUsers();
                 gameState->StopGame();
                 break;
         }
         choose = 0;
+        cin.clear();
     }
-
+    delete gameMenuAction;
+    delete userMenuAction;
+    delete gameService;
+    delete userService;
+    delete userRepository;
+    delete gameState;
     return 0;
 }
