@@ -26,7 +26,7 @@ public:
         do {
             do {
                 maxChoose = UI::PrintUserMenu();
-            } while (!UI::GetUserInput(choose, maxChoose));
+            } while (!UI::GetUserMenuChoose(choose, maxChoose));
             switch (choose) {
                 case 1: {
                     gameState->SetUser(ChooseUser());
@@ -53,7 +53,7 @@ private:
         int userChoose = 0;
         if (userMaxChoose == 0) {
             cout << "Brak graczy do wybrania" << endl;
-        } else if (UI::GetUserInput(userChoose, userMaxChoose)) {
+        } else if (UI::GetUserMenuChoose(userChoose, userMaxChoose)) {
             return _userService->GetUserById(userChoose - 1);
         }
         cout << endl;

@@ -44,6 +44,31 @@ public:
 
     }
 
+    void RemoveById(int id) {
+        if (id >= _length || id < 0) {
+            return;
+        }
+        ListElement<T> *_elementToRemove;
+
+        if (id == 0) {
+            _elementToRemove = _element;
+            _element = _element->GetNextElement();
+        } else {
+            int index = 0;
+            ListElement<T> *_head = _element;
+            while (index != id - 1) {
+                ++index;
+                _head = _head->GetNextElement();
+            }
+
+            _elementToRemove = _head->GetNextElement();
+            _head->SetNextElement(_elementToRemove->GetNextElement());
+        }
+        delete _elementToRemove;
+        _length--;
+    }
+
+
     void Clear() {
         while (_element != NULL) {
             ListElement<T> *elementToDelete = _element;
@@ -62,18 +87,19 @@ public:
         }
     }
 
-    T** ToArray(){
-        T** array = new T*[_length];
+    T **ToArray() {
+        T **array = new T *[_length];
 
         ListElement<T> *_head = _element;
 
-        for(int i = 0; i<_length;i++){
+        for (int i = 0; i < _length; i++) {
             array[i] = _head->GetItem();
             _head = _head->GetNextElement();
         }
         return array;
     }
-    int Length(){
+
+    int Length() {
         return _length;
     }
 

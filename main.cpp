@@ -24,7 +24,7 @@ int main() {
     while (gameState->IsRunning()) {
         do {
             maxChoose = UI::PrintMainMenu();
-        } while (!UI::GetUserInput(choose, maxChoose));
+        } while (!UI::GetUserMenuChoose(choose, maxChoose));
         switch (choose) {
             case 1:
                 userMenuAction->Run(gameState);

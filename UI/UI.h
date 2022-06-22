@@ -43,7 +43,7 @@ public:
         return index;
     }
 
-    static bool GetUserInput(int &input, int max) {
+    static bool GetUserMenuChoose(int &input, int max) {
         cin.clear();
         if (max == 0) {
             input = 0;
@@ -51,6 +51,14 @@ public:
         }
         cout << "Twoj wybor?" << endl;
         cin >> input;
+
+        if (cin.fail()) {
+            cin.clear();
+            cin.sync();
+            cout << "Wprowadz wartosc liczbowa" << endl;
+            input = 0;
+            return false;
+        }
 
         if (input <= max && input > 0) {
             cout << endl;
@@ -61,6 +69,21 @@ public:
         return false;
     }
 
+    static bool GetUserIntInput(int &input) {
+        cin.clear();
+
+        cin >> input;
+
+        if (cin.fail()) {
+            cin.clear();
+            cin.sync();
+            cout << "Wprowadz wartosc liczbowa" << endl;
+            input = 0;
+            return false;
+        }
+
+        return true;
+    }
 };
 
 

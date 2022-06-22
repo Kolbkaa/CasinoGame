@@ -28,7 +28,7 @@ public:
         cout << "Wybierz gre: " << endl;
         do {
             maxChoose = PrintGames();
-        } while (!UI::GetUserInput(choose, maxChoose));
+        } while (!UI::GetUserMenuChoose(choose, maxChoose));
 
         Game *game = _gameService->GetGameById(choose - 1);
         game->Run(_gameState->GetUser());

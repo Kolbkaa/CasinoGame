@@ -8,7 +8,9 @@
 
 #include "../Model/Game.h"
 #include "../Utils/List.h"
-#include "../Model/Games/OneArmedBanditGame.h"
+#include "../Games/OneArmedBanditGame.h"
+#include "../Games/RussianRoulette.h"
+#include "../Games/BlackJack.h"
 
 
 class GameService {
@@ -18,6 +20,8 @@ public:
     GameService(){
         _games = new List<Game>();
         _games->AddItem(new OneArmedBanditGame());
+        _games->AddItem(new RussianRoulette());
+        _games->AddItem(new BlackJack());
     }
 
     List<Game> *GetGames(){
