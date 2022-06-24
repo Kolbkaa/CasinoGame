@@ -93,7 +93,14 @@ private:
 
             }
         }
-        for (int i = 0; i < _users->Length(); i++) {
+        int maxDisplay = 0;
+        if(_users->Length() < 10){
+            maxDisplay = _users->Length();
+        }
+        else{
+            maxDisplay = 10;
+        }
+        for (int i = 0; i < maxDisplay; i++) {
             cout << i + 1 << ". " << userArray[i]->GetNick() << "\t\tPieniadze: " << userArray[i]->GetMoney() << endl;
         }
         cout << endl;

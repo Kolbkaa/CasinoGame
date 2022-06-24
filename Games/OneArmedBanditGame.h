@@ -11,7 +11,7 @@
 class OneArmedBanditGame : public Game {
 private:
 
-    void Play(User *user, int bet) {
+    void Play(User *user) {
         srand(time(NULL));
         cout << "Nacisnij ENTER by zatrzymac losowanie" << endl;
         cin.ignore();
@@ -24,7 +24,7 @@ private:
         cout << endl;
 
         if (number1 == number2 && number1 == number3 && number2 == number3) {
-            int prize = bet * number1 * 1.5;
+            float prize = _bet * number1 * 1.5;
             cout << "Brawo wygrales: " << prize << endl;
             user->AddMoney(prize);
         } else {
@@ -52,7 +52,7 @@ public:
         do {
             _bet = Bet(user);
             if (_bet > 0) {
-                Play(user, _bet);
+                Play(user);
             }
             isRunning = Again(user);
         } while (isRunning);

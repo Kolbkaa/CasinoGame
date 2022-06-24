@@ -23,7 +23,7 @@ public:
             while ( getline (userFile,line) )
             {
                 string nick = line.substr(0, line.find('|'));
-                int money = stoi(line.substr(line.find('|')+1));
+                float money = stof(line.substr(line.find('|')+1));
                 users->AddItem(new User(nick,money));
             }
             userFile.close();

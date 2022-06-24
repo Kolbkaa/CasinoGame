@@ -13,7 +13,7 @@ class BlackJack : public Game {
 private:
     DeckCardsService *_deckCardService;
 
-    void Play(User *user, int bet) {
+    void Play(User *user) {
         _deckCardService = new DeckCardsService();
         int playerSum = 0;
         int croupierSum = 0;
@@ -27,10 +27,10 @@ private:
         card = _deckCardService->GetRandomCard();
         cout << "Druga karta krupiera zakryta" << endl;
         croupierSum += card->GetValue();
-        cout<<endl;
+        cout << endl;
 
         card = _deckCardService->GetRandomCard();
-        cout << "Twoja pierwsza karta " << card->GetName() << endl<;
+        cout << "Twoja pierwsza karta " << card->GetName() << endl;
         playerSum += card->GetValue();
         card = _deckCardService->GetRandomCard();
         cout << "Twoja druga karta " << card->GetName() << endl;
@@ -66,15 +66,14 @@ private:
 
         cout << "Uzyskales " << playerSum << " , a krupier " << croupierSum << endl << endl;
 
-
         if (playerSum > 21 || (playerSum < croupierSum && croupierSum <= 21)) {
             cout << "Niestety przegrales" << endl;
-        } else if (playerSum <= 21 || (playerSum < croupierSum && croupierSum > 21)) {
-            cout << "Brawo! Wygrales " << bet * 1.2 << endl;
-            user->AddMoney(bet * 1.2);
+        } else if (playerSum != croupierSum && (playerSum <= 21 || (playerSum < croupierSum && croupierSum > 21))) {
+            cout << "Brawo! Wygrales " << _bet * 1.2 << endl;
+            user->AddMoney(_bet * 1.2);
         } else {
             cout << "Remis. odyskujesz pieniadze" << endl;
-            user->AddMoney(bet);
+            user->AddMoney(_bet);
         }
         delete _deckCardService;
     }
@@ -88,7 +87,7 @@ public:
         do {
             _bet = Bet(user);
             if (_bet > 0) {
-                Play(user, _bet);
+                Play(user);
             }
             isRunning = Again(user);
         } while (isRunning);

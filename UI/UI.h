@@ -28,7 +28,7 @@ public:
         int index = 0;
         cout << ++index << ". Wybierz gracza." << endl;
         cout << ++index << ". Dodaj gracza." << endl;
-        cout << ++index << ". TOP 100" << endl;
+        cout << ++index << ". TOP 10" << endl;
         cout << ++index << ". Wyjscie." << endl;
         cout << endl;
         return index;
@@ -67,6 +67,23 @@ public:
         cout << "Bledny wybor." << endl;
         cout << endl;
         return false;
+    }
+
+    static bool GetUserFloatInput(float &input) {
+        cin.clear();
+
+        cin >> input;
+
+        if (cin.fail()) {
+            cin.clear();
+            cin.sync();
+            cin.ignore();
+            cout << "Wprowadz wartosc liczbowa" << endl;
+            input = 0;
+            return false;
+        }
+
+        return true;
     }
 
     static bool GetUserIntInput(int &input) {

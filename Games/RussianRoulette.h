@@ -29,7 +29,7 @@ public:
         do {
             _bet = Bet(user);
             if (_bet > 0) {
-                if (!Play(user, _bet)) {
+                if (!Play(user)) {
                     return;
                 }
             }
@@ -39,7 +39,7 @@ public:
     }
 
 private:
-    bool Play(User *user, int bet) {
+    bool Play(User *user) {
         srand(time(NULL));
         bool isLoaded = false;
         int bulletPosition = 0;

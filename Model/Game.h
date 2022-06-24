@@ -30,7 +30,7 @@ public:
     }
 
 protected:
-    int _bet = 0;
+    float _bet = 0;
     bool isRunning = true;
 
 
@@ -57,10 +57,10 @@ protected:
         return false;
     }
 
-    int Bet(User *_user) {
-        int bet = 0;
+    float Bet(User *_user) {
+        float bet = 0;
         cout << "Jaka kwote chcesz obstawic(min:1, max: " << _user->GetMoney() << ")?" << endl;
-        UI::GetUserIntInput(bet);
+        UI::GetUserFloatInput(bet);
         if (bet <= 0) {
             cout << "Musisz obstawic jakas kwote" << endl;
             return 0;

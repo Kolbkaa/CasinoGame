@@ -12,37 +12,37 @@ using namespace std;
 class User {
 private:
     string _nick;
-    int _money;
+    float _money;
 
 public:
     string GetNick() {
         return _nick;
     }
 
-    int GetMoney() {
+    float GetMoney() {
         return _money;
     }
 
-    User(string nick, int money) {
+    User(string nick, float money) {
         _nick = nick;
         _money = money;
     }
 
     User(string nick) {
         _nick = nick;
-        _money = 10000;
+        _money = 100;
     }
 
     User() {}
 
-    int AddMoney(int moneyToAdd) {
+    float AddMoney(float moneyToAdd) {
         return _money += moneyToAdd;
     }
 
-    int MinusMoney(int moneyToMinus) {
+    float MinusMoney(float moneyToMinus) {
         return _money -= moneyToMinus;
     }
-    bool hasEnoughMoney(int money){
+    bool hasEnoughMoney(float money){
         return _money >= money;
     }
 };
