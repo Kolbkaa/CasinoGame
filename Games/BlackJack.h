@@ -82,6 +82,13 @@ public:
     BlackJack() : Game("Black Jack", "Dobierz karty zeby byc jak najblizej 21") {
     }
 
+    ~BlackJack() {
+        if (_deckCardService != NULL) {
+            delete _deckCardService;
+            _deckCardService = NULL;
+        }
+    }
+
     void Run(User *user) override {
         PrintWelcome(user);
         do {

@@ -10,7 +10,7 @@
 
 class GameState {
 public:
-    GameState(){
+    GameState() {
         _isRunning = true;
     }
 
@@ -18,13 +18,15 @@ public:
         _user = user;
     }
 
-    User* GetUser(){
+    User *GetUser() {
         return _user;
     }
-    void StopGame(){
+
+    void StopGame() {
         _isRunning = false;
     }
-    bool IsRunning(){
+
+    bool IsRunning() {
         return _isRunning;
     }
 

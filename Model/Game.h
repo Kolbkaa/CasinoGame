@@ -43,7 +43,7 @@ protected:
 
     bool Again(User *_user) {
         if (_user->GetMoney() == 0) {
-            cout << "Nie masz już pieniędzy. Dziękujemy za grę." << endl;
+            cout << "Nie masz juz pieniedzy. Dziękujemy za gre." << endl;
             return false;
         }
         cout << "Czy chcesz zagrac jeszcze raz? (T)";

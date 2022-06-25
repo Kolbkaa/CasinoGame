@@ -94,11 +94,10 @@ private:
             }
         }
         int maxDisplay = 0;
-        if(_users->Length() < 10){
+        if (_users->Length() < 100) {
             maxDisplay = _users->Length();
-        }
-        else{
-            maxDisplay = 10;
+        } else {
+            maxDisplay = 100;
         }
         for (int i = 0; i < maxDisplay; i++) {
             cout << i + 1 << ". " << userArray[i]->GetNick() << "\t\tPieniadze: " << userArray[i]->GetMoney() << endl;

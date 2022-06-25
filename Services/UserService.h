@@ -20,6 +20,15 @@ public:
         _users = _repository->ReadUsers();
     }
 
+    ~UserService() {
+
+        if (_users != NULL) {
+            delete _users;
+            _users = NULL;
+        }
+
+    }
+
     List<User> *GetUsers() {
         return _users;
     }
@@ -29,23 +38,23 @@ public:
         *isExist = false;
         _users->Iterate([&isExist, nick](User *user) {
             *isExist = user->GetNick() == nick;
-            if(isExist){
+            if (isExist) {
                 return;
             }
         });
 
-        if(!*isExist){
+        if (!*isExist) {
             _users->AddItem(new User(nick));
             _repository->SaveUsers(_users);
         }
         return isExist;
     }
 
-    User* GetUserById(int id){
+    User *GetUserById(int id) {
         return _users->GetItemById(id);
     }
 
-    void SaveUsers(){
+    void SaveUsers() {
         _repository->SaveUsers(_users);
     }
 };

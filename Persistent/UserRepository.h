@@ -14,28 +14,26 @@
 
 class UserRepository {
 public:
-    List<User>* ReadUsers(){
+    List<User> *ReadUsers() {
         List<User> *users = new List<User>();
         string line;
-        ifstream userFile ("userFile.txt");
-        if (userFile.is_open())
-        {
-            while ( getline (userFile,line) )
-            {
+        ifstream userFile("userFile.txt");
+        if (userFile.is_open()) {
+            while (getline(userFile, line)) {
                 string nick = line.substr(0, line.find('|'));
-                float money = stof(line.substr(line.find('|')+1));
-                users->AddItem(new User(nick,money));
+                float money = stof(line.substr(line.find('|') + 1));
+                users->AddItem(new User(nick, money));
             }
             userFile.close();
         }
         return users;
     }
-    void SaveUsers(List<User> *users){
-        ofstream userFile ("userFile.txt");
-        if (userFile.is_open())
-        {
+
+    void SaveUsers(List<User> *users) {
+        ofstream userFile("userFile.txt");
+        if (userFile.is_open()) {
             users->Iterate([&userFile](User *user) {
-                userFile << user->GetNick()<<"|"<<user->GetMoney()<<endl;
+                userFile << user->GetNick() << "|" << user->GetMoney() << endl;
             });
 
             userFile.close();

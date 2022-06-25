@@ -29,6 +29,13 @@ public:
 
     }
 
+    ~List() {
+        if (_element != NULL) {
+            delete _element;
+            _element = NULL;
+        }
+    }
+
     T *GetItemById(int id) {
         if (id >= _length) {
             return NULL;

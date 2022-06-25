@@ -55,7 +55,6 @@ private:
             }
 
         } while (isLoaded != true);
-
         int positionToMatch = (rand() % 7) + 1;
 
         cout << "Nacisnij ENTER aby pociagnac za spust!" << endl;

@@ -17,6 +17,17 @@ public:
         _item = item;
     }
 
+    ~ListElement() {
+        if (_item != NULL) {
+            delete _item;
+            _item = NULL;
+        }
+        if (_nextElement != NULL) {
+            delete _nextElement;
+            _nextElement = NULL;
+        }
+    }
+
     T *GetItem() {
         return _item;
     };

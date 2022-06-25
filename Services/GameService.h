@@ -14,21 +14,27 @@
 
 
 class GameService {
-    private:
+private:
     List<Game> *_games;
 public:
-    GameService(){
+    GameService() {
         _games = new List<Game>();
         _games->AddItem(new OneArmedBanditGame());
         _games->AddItem(new RussianRoulette());
         _games->AddItem(new BlackJack());
     }
+    ~GameService(){
+        if(_games != NULL){
+            delete _games;
+            _games = NULL;
+        }
+    }
 
-    List<Game> *GetGames(){
+    List<Game> *GetGames() {
         return _games;
     }
 
-    Game *GetGameById(int id){
+    Game *GetGameById(int id) {
         return _games->GetItemById(id);
     }
 };

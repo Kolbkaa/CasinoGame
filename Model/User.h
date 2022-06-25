@@ -42,7 +42,8 @@ public:
     float MinusMoney(float moneyToMinus) {
         return _money -= moneyToMinus;
     }
-    bool hasEnoughMoney(float money){
+
+    bool hasEnoughMoney(float money) {
         return _money >= money;
     }
 };

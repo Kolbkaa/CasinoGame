@@ -73,6 +73,13 @@ public:
 
     }
 
+    ~DeckCardsService() {
+        if (_decks != NULL) {
+            delete _decks;
+            _decks = NULL;
+        }
+    }
+
     Card *GetRandomCard() {
         int cardId = (rand() % _decks->Length());
         Card *card = _decks->GetItemById(cardId);
